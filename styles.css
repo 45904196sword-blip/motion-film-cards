@@ -130,11 +130,11 @@ h1 span {
 .proof-row span { display: flex; align-items: baseline; gap: 5px; }
 .proof-row strong { color: var(--lime); font-size: 19px; }
 
-.hero-media-wrap { width: min(100%, 440px); justify-self: end; }
+.hero-media-wrap { width: min(100%, 380px); justify-self: end; }
 .hero-media {
   position: relative;
   z-index: 3;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 9 / 16;
   overflow: hidden;
   border: 1px solid rgba(142, 197, 255, 0.34);
   border-radius: 6px;
@@ -142,7 +142,7 @@ h1 span {
   box-shadow: 0 30px 80px rgba(0,0,0,.5), 0 0 70px rgba(43,125,230,.12);
 }
 .hero-media::after { position: absolute; inset: 0; border: 1px solid rgba(255,255,255,.08); content: ''; pointer-events: none; }
-.hero-media video, .demo-card video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.hero-media video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .media-label {
   position: absolute;
   z-index: 2;
@@ -191,11 +191,11 @@ h1 span {
 .demo-caption span { color: var(--blue-bright); font-size: 10px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
 .demo-caption strong { font-size: 18px; }
 
-.showcase-section { padding-top: 32px; }
-.showcase-heading { align-items: start; }
-.showcase-intro { display: grid; gap: 20px; }
-.showcase-intro p { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.7; }
-.showcase-intro span {
+.range-section { padding-top: 118px; }
+.range-heading { align-items: start; }
+.range-intro { display: grid; gap: 20px; }
+.range-intro p { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.7; }
+.range-intro span {
   display: block;
   padding: 16px 18px;
   border-left: 2px solid var(--blue);
@@ -208,15 +208,22 @@ h1 span {
 }
 .showcase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 58px; }
 .showcase-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 6px;
   background: linear-gradient(150deg, rgba(88,166,255,.06), transparent 42%), var(--surface);
   transition: transform 180ms ease, border-color 180ms ease;
 }
+.showcase-card-featured, .showcase-card-wide { grid-column: span 2; grid-template-columns: minmax(0, 1.15fr) minmax(240px, .85fr); grid-template-rows: 1fr; }
+.showcase-card-wide { grid-template-columns: minmax(240px, .85fr) minmax(0, 1.15fr); }
+.showcase-card-wide .showcase-media { order: 2; }
 .showcase-card:hover { transform: translateY(-4px); border-color: rgba(88,166,255,.5); }
-.showcase-media { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: #0d1014; }
+.showcase-media { position: relative; min-height: 500px; overflow: hidden; background: radial-gradient(circle at 50% 30%, #1a2230, #0d1014 65%); }
+.showcase-card-featured .showcase-media, .showcase-card-wide .showcase-media { min-height: 620px; }
 .showcase-media video { display: block; width: 100%; height: 100%; background: #0d1014; object-fit: cover; }
+.showcase-media .video-contain { object-fit: contain; }
 .showcase-index {
   position: absolute;
   top: 14px;
@@ -233,10 +240,30 @@ h1 span {
   font-weight: 800;
   backdrop-filter: blur(8px);
 }
-.showcase-copy { padding: 22px; }
+.showcase-copy { display: flex; flex-direction: column; justify-content: flex-end; padding: 26px; }
+.showcase-card-featured .showcase-copy {
+  position: relative;
+  justify-content: flex-start;
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(88,166,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(88,166,255,.05) 1px, transparent 1px),
+    radial-gradient(circle at 100% 0%, rgba(88,166,255,.17), transparent 42%);
+  background-size: 34px 34px, 34px 34px, auto;
+}
+.showcase-card-wide .showcase-copy { justify-content: center; }
+.showcase-feature-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; color: var(--blue-bright); }
+.showcase-feature-header span { padding-top: 8px; font-size: 9px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+.showcase-feature-header strong { color: transparent; font-family: Impact, sans-serif; font-size: 86px; font-weight: 500; letter-spacing: -.03em; line-height: .8; -webkit-text-stroke: 1px rgba(142,197,255,.52); }
+.showcase-card-featured .showcase-copy > span { margin-top: auto; }
+.showcase-card-featured .showcase-copy > p { margin-bottom: auto; }
+.showcase-feature-details { display: grid; gap: 13px; padding-top: 22px; border-top: 1px solid rgba(142,197,255,.22); color: #cbd3dc; font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.showcase-feature-details span { display: flex; align-items: center; gap: 9px; }
+.showcase-feature-details span::before { width: 5px; height: 5px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 9px rgba(183,243,75,.62); content: ''; }
 .showcase-copy > span { color: var(--blue-bright); font-size: 9px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
 .showcase-copy h3 { margin: 12px 0 10px; font-size: 20px; letter-spacing: -.02em; line-height: 1.2; }
 .showcase-copy p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.65; }
+.content-note { margin: 24px 0 0; color: #7f8994; font-size: 10px; font-weight: 700; letter-spacing: .06em; line-height: 1.6; text-transform: uppercase; }
 
 .use-section { width: 100%; padding-right: max(24px, calc((100vw - 1180px) / 2)); padding-left: max(24px, calc((100vw - 1180px) / 2)); background: #0d1015; }
 .centered-heading { max-width: 760px; margin: 0 auto; text-align: center; }
@@ -288,6 +315,8 @@ h1 span {
 .pilot-section > p:not(.eyebrow) { max-width: 620px; margin: 30px auto 0; color: #b6bdc5; font-size: 16px; line-height: 1.7; }
 .button-large { min-height: 56px; margin-top: 34px; padding: 0 28px; }
 .pilot-note { display: block; margin-top: 18px; color: #7e8791; font-size: 10px; letter-spacing: .09em; text-transform: uppercase; }
+.pilot-note a { color: var(--blue-bright); text-transform: none; }
+.pilot-note a:hover { color: #fff; }
 
 footer { display: grid; width: min(1180px, calc(100% - 48px)); min-height: 110px; margin: 0 auto; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: center; color: #7f8892; font-size: 11px; }
 footer > a:last-child { justify-self: end; font-weight: 700; }
@@ -301,6 +330,7 @@ footer > a:last-child { justify-self: end; font-weight: 700; }
   .demo-grid { grid-template-columns: 1fr 1fr; }
   .demo-card, .demo-card-large { min-height: 520px; }
   .showcase-grid { grid-template-columns: repeat(2, 1fr); }
+  .showcase-card-featured, .showcase-card-wide { grid-column: span 2; }
   .use-grid { grid-template-columns: 1fr; }
   .use-card { min-height: 270px; }
   footer { grid-template-columns: 1fr auto; }
@@ -323,11 +353,17 @@ footer > a:last-child { justify-self: end; font-weight: 700; }
   .section-heading h2, .process-intro h2, .spec-copy h2, .pilot-section h2 { font-size: 46px; }
   .demo-grid { grid-template-columns: 1fr; }
   .demo-card, .demo-card-large { min-height: 530px; }
-  .showcase-section { padding-top: 12px; }
+  .range-section { padding-top: 86px; }
   .showcase-grid { grid-template-columns: 1fr; gap: 16px; margin-top: 42px; }
-  .showcase-card { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); }
-  .showcase-media { aspect-ratio: 3 / 4; }
-  .showcase-copy { display: flex; flex-direction: column; justify-content: center; padding: 18px; }
+  .showcase-card, .showcase-card-featured, .showcase-card-wide { grid-column: auto; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); grid-template-rows: 1fr; }
+  .showcase-card-featured { grid-template-columns: 1fr; grid-template-rows: auto auto; }
+  .showcase-card-wide { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); }
+  .showcase-card-wide .showcase-media { order: 0; }
+  .showcase-media, .showcase-card-featured .showcase-media, .showcase-card-wide .showcase-media { min-height: 380px; }
+  .showcase-card-featured .showcase-media { min-height: 560px; }
+  .showcase-copy { justify-content: center; padding: 18px; }
+  .showcase-card-featured .showcase-copy { min-height: 330px; padding: 24px; }
+  .showcase-feature-header strong { font-size: 54px; }
   .showcase-copy h3 { font-size: 18px; }
   .use-section { width: 100%; padding-right: 18px; padding-left: 18px; }
   .process-list li { grid-template-columns: 46px 1fr; gap: 14px; }
